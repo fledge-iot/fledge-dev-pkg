@@ -17,10 +17,10 @@ Internal Structure
 
 The repository contains the following set of files:
 
-- Files named with **make_** prefix, such as ``make_deb``, are the shell scripts used to build the package. The scripts accept the architecture to build as argument (currently *x86* and *arm*).
+- Files named with **make_** prefix, such as ``make_deb``, are the shell scripts used to build the package. The script runs as per the architecture to build.
 - The **packages** folder contains the list package types to build. At the moment, the only package type we provide is *Debian*.
 
-  - Inside the *packages/Debian* folder, we have the **architecture** folders, plus a *common* folder containing files that are common to all the architectures. The architectures that we provide at the moment are *armhf* and *x86_64*.
+  - Inside the *packages/Debian* folder, we have the **architecture** folders, plus a *common* folder containing files that are common to all the architectures. The architectures that we provide at the moment are *aarch64*, *armv7l* and *x86_64*.
 
     - Inside the architecture folder we have the DEBIAN folder, which contains all the Debian-based files, i.e. control, pre/post inst/rm, needed for the creation of the package.
 
@@ -50,8 +50,7 @@ Building a Package
 First, make sure Fledge source code is available somewhere on your environment.
 Use FLEDGE_ROOT environment variable to set the source tree location and run ``make`` command in that path.
 NOTE: existing Fledge installation via ``make install`` can not be used as it lacks the needed header files.
-Next, select the architecture to use, *x86* or *arm*.
-Finally, run the ``make_deb`` command:
+Finally, run the ``make_deb`` command and it will make as per ``arch``:
 
 Complete example:
 
