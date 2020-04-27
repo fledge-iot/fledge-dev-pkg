@@ -1,0 +1,10 @@
+Package: fledge-dev
+Version: 1.0.0
+Section: devel
+Priority: optional
+Architecture: arm64
+Depends: autoconf,libtool,libboost-dev,libboost-system-dev,libboost-thread-dev,libpq-dev,postgresql,python3-pip,python3-setuptools,sqlite3
+Conflicts:
+Maintainer: Dianomic Systems, Inc. <info@dianomic.com>
+Homepage: http://www.dianomic.com
+Description: Fledge SDK, the open source platform for the Internet of Things
