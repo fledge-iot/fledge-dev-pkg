@@ -75,9 +75,10 @@ fi
 
 version=`cat ${FLEDGE_ROOT}/VERSION | tr -d ' ' | grep 'fledge_version=' | head -1 | sed -e 's/\(.*\)=\(.*\)/\2/g'`
 BUILD_ROOT="${GIT_ROOT}/packages/Debian/build/${architecture}"
+git_tag_info=$(git describe --tags) && commit_count=$(echo ${git_tag_info} | cut -d- -f2) || { commit_count=$(git rev-list --count HEAD); git_tag_info="v$version-$commit_count-g$(git rev-parse --short HEAD)"; }
 
 # Final package name
-package_name="fledge-dev-${version}-${architecture}"
+package_name="fledge-dev_${version}-${commit_count}_${architecture}"
 
 # Print the summary of findings
 echo "  - Fledge Dev package (headers and libraries) -"
@@ -114,7 +115,7 @@ echo "Populating the package and updating version in control file ..."
 cd "${package_name}"
 cp -R ${GIT_ROOT}/packages/Debian/common/* .
 cp -R ${GIT_ROOT}/packages/Debian/${architecture}/* .
-sed -i "s/Version: 1.0.0/Version: $version/g" DEBIAN/control
+sed -i "s/Version: 1.0.0/Version: ${git_tag_info:1}/g" DEBIAN/control
 # Create include dir
 mkdir -p usr/include/fledge
 cd usr/include/fledge
