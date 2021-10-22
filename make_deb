@@ -116,6 +116,7 @@ cd "${package_name}"
 cp -R ${GIT_ROOT}/packages/Debian/common/* .
 cp -R ${GIT_ROOT}/packages/Debian/${architecture}/* .
 sed -i "s/Version: 1.0.0/Version: ${version}/g" DEBIAN/control
+if [[ ${branch_name} = "main" ]] || [[ ${branch_name} =~ ^[0-9]+\.[0-9]+\.[0-9]+RC ]]; then echo "Build: ${git_tag_info:1}" >> DEBIAN/control; fi
 # Create include dir
 mkdir -p usr/include/fledge
 cd usr/include/fledge
