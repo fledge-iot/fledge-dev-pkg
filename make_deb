@@ -78,7 +78,7 @@ BUILD_ROOT="${GIT_ROOT}/packages/Debian/build/${architecture}"
 git_tag_info=$(git describe --tags) && commit_count=$(echo ${git_tag_info} | cut -d- -f2) || { commit_count=$(git rev-list --count HEAD); git_tag_info="v$version-$commit_count-g$(git rev-parse --short HEAD)"; }
 branch_name=$(git rev-parse --abbrev-ref HEAD)
 # Final package name
-if [[ ${branch_name} != "main" ]] && [[ ! ${branch_name} =~ ^[0-9]+\.[0-9]+\.[0-9]+RC ]]; then package_name="fledge-dev_${version}-${commit_count}_${architecture}"; version=${git_tag_info:1}; else package_name="fledge-dev-${version}-${architecture}"; fi
+if [[ ${branch_name} != "main" ]] && [[ ! ${branch_name} =~ ^[0-9]+\.[0-9]+\.[0-9]+RC ]]; then package_name="fledge-dev_${version}-${commit_count}_${architecture}"; version=${git_tag_info:1}; else package_name="fledge-dev_${version}_${architecture}"; fi
 
 # Print the summary of findings
 echo "  - Fledge Dev package (headers and libraries) -"
