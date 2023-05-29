@@ -123,8 +123,10 @@ mkdir -p usr/include/fledge
 cd usr/include/fledge
 # Add Fledge *.h files
 cp -R ${FLEDGE_ROOT}/C/common/include/*.h .
+cp -R ${FLEDGE_ROOT}/C/common/include/exprtk.hpp .
 cp -R ${FLEDGE_ROOT}/C/plugins/common/include/*.h .
 cp -R ${FLEDGE_ROOT}/C/services/common/include/*.h .
+cp -R ${FLEDGE_ROOT}/C/services/south/include/*.h .
 cp -R ${FLEDGE_ROOT}/C/plugins/filter/common/include/*.h .
 echo "  - Fledge header files added."
 # Add third-party include files
